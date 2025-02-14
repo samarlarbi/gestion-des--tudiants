@@ -1,0 +1,52 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CustomTitleBarColor {
+    private JFrame frame;
+    private JPanel titleBar;
+
+    public CustomTitleBarColor() {
+        frame = new JFrame("Custom Title Bar Color");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
+        frame.setLayout(new BorderLayout());
+
+        // Create custom title bar
+        titleBar = new JPanel(new BorderLayout());
+        titleBar.setBackground(Color.BLUE); // Set title bar color
+        titleBar.setPreferredSize(new Dimension(frame.getWidth(), 30)); // Adjust height as needed
+
+        // Add title label
+        JLabel titleLabel = new JLabel("Custom Title Bar Color");
+        titleLabel.setForeground(Color.WHITE); // Set text color
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleBar.add(titleLabel, BorderLayout.CENTER);
+
+        // Add close button
+        JButton closeButton = new JButton("X");
+        closeButton.setFocusable(false); // Remove focus border
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // Close the application
+            }
+        });
+        closeButton.setForeground(Color.WHITE); // Set button text color
+        closeButton.setContentAreaFilled(false); // Make button transparent
+        titleBar.add(closeButton, BorderLayout.EAST);
+
+        // Add title bar to frame
+        frame.add(titleBar, BorderLayout.NORTH);
+
+        // Add content to frame
+        JLabel contentLabel = new JLabel("Custom title bar color example");
+        contentLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        frame.add(contentLabel, BorderLayout.CENTER);
+
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(CustomTitleBarColor::new);
+    }
+}
